@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentSignInBinding
+import com.example.foodmarket.ui.MainActivity
 import com.example.foodmarket.ui.auth.AuthActivity
 
 class SignInFragment : Fragment() {
@@ -31,6 +32,12 @@ class SignInFragment : Fragment() {
             val signUp = Intent(activity, AuthActivity::class.java)
             signUp.putExtra("page_request",2)
             startActivity(signUp)
+        }
+
+        binding.btnSignIn.setOnClickListener {
+            val home = Intent(activity, MainActivity::class.java)
+            startActivity(home)
+            activity?.finish()
         }
     }
 }
