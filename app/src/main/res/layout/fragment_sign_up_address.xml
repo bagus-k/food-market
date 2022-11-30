@@ -24,6 +24,7 @@
         android:text="Phone No" />
 
     <EditText
+        android:id="@+id/edt_phone_no"
         android:layout_marginTop="6dp"
         android:padding="10dp"
         style="@style/EditText.PoppinsNormal14spBD92A3"
@@ -40,6 +41,7 @@
         android:text="Address" />
 
     <EditText
+        android:id="@+id/edt_address"
         android:layout_marginTop="6dp"
         android:padding="10dp"
         style="@style/EditText.PoppinsNormal14spBD92A3"
@@ -56,6 +58,7 @@
         android:text="House No" />
 
     <EditText
+        android:id="@+id/edt_house_no"
         android:layout_marginTop="6dp"
         android:padding="10dp"
         style="@style/EditText.PoppinsNormal14spBD92A3"
@@ -72,6 +75,7 @@
         android:text="City" />
 
     <EditText
+        android:id="@+id/edt_city"
         android:layout_marginTop="6dp"
         android:padding="10dp"
         style="@style/EditText.PoppinsNormal14spBD92A3"

@@ -13,12 +13,13 @@ import com.example.foodmarket.databinding.ItemHomeHorizontalBinding
 import com.example.foodmarket.databinding.ItemHomeVerticalBinding
 import com.example.foodmarket.model.dummy.HomeModel
 import com.example.foodmarket.model.dummy.HomeVerticalModel
+import com.example.foodmarket.model.response.home.Data
 import com.example.foodmarket.utils.Helpers.formatPrice
 import java.lang.reflect.Type
 import java.text.FieldPosition
 
 class HomeNewTasteAdapter(
-    private val listData : List<HomeVerticalModel>,
+    private val listData : List<Data>,
     private val itemAdapterCallback: ItemAdapterCallback,
 ) : RecyclerView.Adapter<HomeNewTasteAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeNewTasteAdapter.ViewHolder {
@@ -35,14 +36,14 @@ class HomeNewTasteAdapter(
     }
 
     class ViewHolder (private val binding: ItemHomeVerticalBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(data: HomeVerticalModel, itemAdapterCallback: ItemAdapterCallback) {
+        fun bind(data: Data, itemAdapterCallback: ItemAdapterCallback) {
             itemView.apply {
-                binding.tvTitle.text = data.title
-                binding.tvPrice.formatPrice(data.price)
-                binding.ratingBar.rating = data.rating
-//                Glide.with(context)
-//                    .load(data.src)
-//                    .into(binding.imgPoster)
+                binding.tvTitle.text = data.name
+                binding.tvPrice.formatPrice(data.price.toString())
+                binding.ratingBar.rating = data.rate?.toFloat() ?: 0f
+                Glide.with(context)
+                    .load(data.picturePath)
+                    .into(binding.imgPoster)
 
                 itemView.setOnClickListener { itemAdapterCallback.onClick(it, data) }
             }
@@ -51,6 +52,6 @@ class HomeNewTasteAdapter(
     }
 
     interface ItemAdapterCallback {
-        fun onClick(v: View, data: HomeVerticalModel)
+        fun onClick(v: View, data: Data)
     }
 }

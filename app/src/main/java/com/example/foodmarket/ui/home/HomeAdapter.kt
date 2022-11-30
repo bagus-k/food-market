@@ -11,11 +11,12 @@ import com.bumptech.glide.Glide
 import com.example.foodmarket.R
 import com.example.foodmarket.databinding.ItemHomeHorizontalBinding
 import com.example.foodmarket.model.dummy.HomeModel
+import com.example.foodmarket.model.response.home.Data
 import java.lang.reflect.Type
 import java.text.FieldPosition
 
 class HomeAdapter(
-    private val listData : List<HomeModel>,
+    private val listData : List<Data>,
     private val itemAdapterCallback: ItemAdapterCallback,
 ) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapter.ViewHolder {
@@ -32,13 +33,13 @@ class HomeAdapter(
     }
 
     class ViewHolder (private val binding: ItemHomeHorizontalBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(data: HomeModel, itemAdapterCallback: ItemAdapterCallback) {
+        fun bind(data: Data, itemAdapterCallback: ItemAdapterCallback) {
             itemView.apply {
-                binding.tvTitle.text = data.title
-                binding.tvRatingBar.rating = data.rating
-//                Glide.with(context)
-//                    .load(data.src)
-//                    .into(binding.imgPoster)
+                binding.tvTitle.text = data.name
+                binding.tvRatingBar.rating = data.rate?.toFloat() ?: 0f
+                Glide.with(context)
+                    .load(data.picturePath)
+                    .into(binding.imgPoster)
 
                 itemView.setOnClickListener { itemAdapterCallback.onClick(it, data) }
             }
@@ -47,6 +48,6 @@ class HomeAdapter(
     }
 
     interface ItemAdapterCallback {
-        fun onClick(v: View, data: HomeModel)
+        fun onClick(v: View, data: Data)
     }
 }

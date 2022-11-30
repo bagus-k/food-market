@@ -33,20 +33,20 @@ class AuthActivity : AppCompatActivity() {
     }
 
     fun toolbarSignUp() {
-        binding.toolbar.toolbar.title = "Sign Up"
-        binding.toolbar.toolbar.subtitle = "Register and eat"
-        binding.toolbar.toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_000, null)
-        binding.toolbar.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbarAuth.toolbar.title = "Sign Up"
+        binding.toolbarAuth.toolbar.subtitle = "Register and eat"
+        binding.toolbarAuth.toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_000, null)
+        binding.toolbarAuth.toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     fun toolbarSignUpAddress() {
-        binding.toolbar.toolbar.title = "Address"
-        binding.toolbar.toolbar.subtitle = "Make sure is valid"
-        binding.toolbar.toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_000, null)
-        binding.toolbar.toolbar.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbarAuth.toolbar.title = "Address"
+        binding.toolbarAuth.toolbar.subtitle = "Make sure is valid"
+        binding.toolbarAuth.toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back_000, null)
+        binding.toolbarAuth.toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
     fun toolbarSignUpSuccess() {
-        binding.toolbar.toolbar.visibility = View.GONE
+        binding.toolbarAuth.toolbar.visibility = View.GONE
     }
 }

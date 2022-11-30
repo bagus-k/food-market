@@ -12,13 +12,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.foodmarket.R
 import com.example.foodmarket.databinding.FragmentHomeNewTasteBinding
 import com.example.foodmarket.model.dummy.HomeVerticalModel
+import com.example.foodmarket.model.response.home.Data
 import com.example.foodmarket.ui.detail.DetailActivity
 import com.example.foodmarket.ui.home.newtaste.HomeNewTasteAdapter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomePopularFragment : Fragment(), HomeNewTasteAdapter.ItemAdapterCallback {
 
     private var _binding: FragmentHomeNewTasteBinding? = null
-    private var foodList: ArrayList<HomeVerticalModel> = ArrayList()
+//    private var foodList: ArrayList<HomeVerticalModel> = ArrayList()
+    private var popularList: ArrayList<Data>? = ArrayList()
+
 
     private val binding get() = _binding!!
 
@@ -34,24 +39,25 @@ class HomePopularFragment : Fragment(), HomeNewTasteAdapter.ItemAdapterCallback 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initDataDummy()
+//        initDataDummy()
+        popularList = arguments?.getParcelableArrayList("data")
 
-        var adapter = HomeNewTasteAdapter(foodList,this)
+        var adapter = HomeNewTasteAdapter(popularList!!,this)
         var layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
         binding.rvList.layoutManager = layoutManager
         binding.rvList.adapter = adapter
 
     }
 
-    fun initDataDummy() {
-        foodList = ArrayList()
-        foodList.add(HomeVerticalModel("Cherry","10000","",5f))
-        foodList.add(HomeVerticalModel("Burger","15000","",4f))
-        foodList.add(HomeVerticalModel("Bakwan","20000","",4.5f))
-    }
+//    fun initDataDummy() {
+//        foodList = ArrayList()
+//        foodList.add(HomeVerticalModel("Cherry","10000","",5f))
+//        foodList.add(HomeVerticalModel("Burger","15000","",4f))
+//        foodList.add(HomeVerticalModel("Bakwan","20000","",4.5f))
+//    }
 
-    override fun onClick(v: View, data: HomeVerticalModel) {
-        val detail = Intent(activity, DetailActivity::class.java)
+    override fun onClick(v: View, data: Data) {
+        val detail = Intent(activity, DetailActivity::class.java).putExtra("data",data)
         startActivity(detail)
     }
 }

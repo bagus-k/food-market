@@ -46,6 +46,7 @@ some foods as a self-reward"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
+        android:id="@+id/btn_finds"
         style="@style/Button.Primary"
         android:text="Finds Food"
         android:layout_marginTop="30dp"

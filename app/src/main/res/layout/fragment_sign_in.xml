@@ -19,6 +19,7 @@
         android:text="Email Address" />
 
     <EditText
+        android:id="@+id/edt_email"
         android:layout_marginTop="6dp"
         android:padding="10dp"
         style="@style/EditText.PoppinsNormal14spBD92A3"
@@ -35,6 +36,7 @@
         android:text="Password" />
 
     <EditText
+        android:id="@+id/edt_password"
         android:inputType="textPassword"
         android:layout_marginTop="6dp"
         android:padding="10dp"
