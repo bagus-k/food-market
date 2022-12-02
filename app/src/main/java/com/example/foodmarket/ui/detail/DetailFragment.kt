@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
@@ -18,6 +19,8 @@ import com.example.foodmarket.utils.Helpers.formatPrice
 class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
+    var bundle: Bundle? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,11 +47,14 @@ class DetailFragment : Fragment() {
         }
 
         binding.btnOrderNow.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_payment)
+            Navigation.findNavController(it).navigate(R.id.action_payment, bundle)
         }
     }
 
     private fun initView(data: Data?) {
+
+        bundle = bundleOf("data" to data)
+
         Glide.with(requireActivity())
             .load(data?.picturePath)
             .into(binding.imgPoster)

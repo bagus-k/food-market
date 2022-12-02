@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.example.foodmarket.FoodMarket
 import com.example.foodmarket.databinding.FragmentProfileBinding
+import com.example.foodmarket.model.response.login.User
+import com.google.gson.Gson
 
 class ProfileFragment : Fragment() {
 
@@ -32,6 +36,17 @@ class ProfileFragment : Fragment() {
         )
         binding.viewPager.adapter = sectionPagerAdapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
+
+        var user = FoodMarket.getApp().getUser()
+        var userResponse = Gson().fromJson(user, User::class.java)
+
+        if (!userResponse.profilePhotoUrl.isNullOrEmpty()) {
+            Glide.with(requireActivity())
+                .load(userResponse.profilePhotoUrl)
+                .into(binding.imgProfile)
+        }
+        binding.tvName.text = userResponse.name
+        binding.tvEmail.text = userResponse.email
     }
 
     override fun onDestroyView() {
